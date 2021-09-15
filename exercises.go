@@ -37,10 +37,20 @@ func getExercises() exercises {
 	return es
 }
 
-func (es exercises) choseRandomExercise() exercise {
+func (es exercises) chooseRandomExercise() exercise {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 	return es[r.Intn(len(es)-1)]
+}
+
+func (es exercises) chooseRandomExerciseForRegion(r string) exercise {
+	exercisesForRegion := exercises{}
+	for _, e := range es {
+		if e.region == r {
+			exercisesForRegion = append(exercisesForRegion, e)
+		}
+	}
+	return exercisesForRegion.chooseRandomExercise()
 }
 
 func (e exercise) printExercise(r int) {
