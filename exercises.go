@@ -59,9 +59,11 @@ func (es exercises) chooseRandomExerciseForRegion(r string) (exercise, error) {
 }
 
 func (e exercise) printExercise(r int) {
+	fmt.Println("--------------------")
 	fmt.Println("Region:", e.region)
 	fmt.Println("Name:", e.name)
 	fmt.Println("Reps:", r)
+	fmt.Println("--------------------")
 }
 
 func (es exercises) getAllPossibleRegions() regions {
@@ -78,6 +80,19 @@ func (es exercises) getAllPossibleRegions() regions {
 		}
 	}
 	return regions
+}
+
+func (es exercises) getRandomFullBodyWorkout() exercises {
+	rs := es.getAllPossibleRegions()
+	fullBodyWorkout := exercises{}
+	for _, r := range rs {
+		e, err := es.chooseRandomExerciseForRegion(r)
+		if err != nil {
+			fmt.Println("Error:", err)
+		}
+		fullBodyWorkout = append(fullBodyWorkout, e)
+	}
+	return fullBodyWorkout
 }
 
 func (rs regions) printRegions() {

@@ -51,6 +51,17 @@ func TestGetAllPossibleRegions(t *testing.T) {
 	rs := es.getAllPossibleRegions()
 	if len(rs) != 8 {
 		t.Errorf("Expected length of 8, but got %v", len(rs))
+	}
+}
 
+func TestGetFullBodyWorkout(t *testing.T) {
+	es := getExercises()
+	w := es.getRandomFullBodyWorkout()
+	if len(w) != 8 {
+		t.Errorf("Expected length of 8, but got %v", len(w))
+	}
+	rs := w.getAllPossibleRegions()
+	if len(rs) != 8 {
+		t.Errorf("Expected length of 8, but got %v for list of regions %v", len(rs), rs)
 	}
 }
