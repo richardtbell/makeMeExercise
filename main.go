@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 	"time"
@@ -13,7 +14,14 @@ func main() {
 		e.printExercise(getRandomReps())
 	}
 	if len(os.Args) == 2 {
-		e := es.chooseRandomExerciseForRegion(os.Args[1])
+		e, err := es.chooseRandomExerciseForRegion(os.Args[1])
+		if err != nil {
+			fmt.Println("No exercises found for region: ", os.Args[1])
+			fmt.Println("Please choose a region from the following list, or omit to get a random exercise.")
+			rs := es.getAllPossibleRegions()
+			rs.printRegions()
+			os.Exit(1)
+		}
 		e.printExercise(getRandomReps())
 	}
 }

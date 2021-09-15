@@ -27,13 +27,30 @@ func TestChooseRandomExercise(t *testing.T) {
 
 func TestChooseRandomExerciseForRegion(t *testing.T) {
 	es := getExercises()
-	r1 := es.chooseRandomExerciseForRegion("Shoulders")
+	r1, _ := es.chooseRandomExerciseForRegion("Shoulders")
 	if r1.region != "Shoulders" {
 		t.Errorf("Expected region to be 'Shoulders', but got %v", r1)
 	}
-	r2 := es.chooseRandomExerciseForRegion("Shoulders")
+	r2, _ := es.chooseRandomExerciseForRegion("Shoulders")
 
 	if r1 == r2 {
-		t.Errorf("Expected %v and %v to be different exercises", r1, r2)
+		// likely to get a conflict here, so getting a different value should hopefully reduce the chance of this being flaky
+		r2, _ = es.chooseRandomExerciseForRegion("Shoulders")
+		if r1 == r2 {
+			t.Errorf("Expected %v and %v to be different exercises", r1, r2)
+		}
+	}
+	r3, err := es.chooseRandomExerciseForRegion("eyeball")
+	if err == nil {
+		t.Errorf("Expected error response for non existant region, but got %v", r3)
+	}
+}
+
+func TestGetAllPossibleRegions(t *testing.T) {
+	es := getExercises()
+	rs := es.getAllPossibleRegions()
+	if len(rs) != 8 {
+		t.Errorf("Expected length of 8, but got %v", len(rs))
+
 	}
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"os"
@@ -15,6 +16,7 @@ type exercise struct {
 }
 
 type exercises []exercise
+type regions []string
 
 func getExercises() exercises {
 	es := exercises{}
@@ -43,18 +45,43 @@ func (es exercises) chooseRandomExercise() exercise {
 	return es[r.Intn(len(es)-1)]
 }
 
-func (es exercises) chooseRandomExerciseForRegion(r string) exercise {
+func (es exercises) chooseRandomExerciseForRegion(r string) (exercise, error) {
 	exercisesForRegion := exercises{}
 	for _, e := range es {
 		if e.region == r {
 			exercisesForRegion = append(exercisesForRegion, e)
 		}
 	}
-	return exercisesForRegion.chooseRandomExercise()
+	if len(exercisesForRegion) == 0 {
+		return exercise{}, errors.New("No exercises found for region '" + r + "'")
+	}
+	return exercisesForRegion.chooseRandomExercise(), nil
 }
 
 func (e exercise) printExercise(r int) {
 	fmt.Println("Region:", e.region)
 	fmt.Println("Name:", e.name)
 	fmt.Println("Reps:", r)
+}
+
+func (es exercises) getAllPossibleRegions() regions {
+	regions := regions{}
+	for _, e := range es {
+		hasRegion := false
+		for _, r := range regions {
+			if e.region == r {
+				hasRegion = true
+			}
+		}
+		if !hasRegion {
+			regions = append(regions, e.region)
+		}
+	}
+	return regions
+}
+
+func (rs regions) printRegions() {
+	for _, r := range rs {
+		fmt.Println(r)
+	}
 }
