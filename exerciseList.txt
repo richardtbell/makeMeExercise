@@ -35,7 +35,7 @@ Shoulder Shrug
 Push Press
 Crouched Rear Deltoid Row
 
-Biceps
+Bicep
 One-at-a-Time Biceps Curl
 Alternated Biceps Curl
 Inner-Biceps Curl
@@ -46,9 +46,9 @@ Seated Biceps Curl
 Incline Alternated Biceps Curl
 Incline Biceps Curl
 Incline Biceps Bench Curl
-Concentration Biceps Curl
+Concentrated Biceps Curl
 Seated Inner-Biceps Curl
-Seated Concentration Curl
+Seated Concentrated Curl
 Seated Isolated Dumbbell Curl
 Preacher Biceps Curl (Supination Grip)
 Preacher Biceps Curl (Neutral Grip)
@@ -65,7 +65,7 @@ Lying Triceps Extension
 Triceps Bench Press
 
 Back
-Wide Row
+Standing Wide Row
 Bent Over Row
 Kneeling One Arm Row
 One Arm Row

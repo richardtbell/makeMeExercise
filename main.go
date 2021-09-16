@@ -53,5 +53,3 @@ func printHelp() {
 	fmt.Println("")
 	fmt.Println("All exercises have a random number of reps between 1 and 50")
 }
-
-// Scrape description (https://dumbbell-exercises.com/exercises/triceps/) (https://dumbbell-exercises.com/exercises/dumbbell-back-exercises/) (https://dumbbell-exercises.com/exercises/dumbbell-exercises-for-biceps/)
