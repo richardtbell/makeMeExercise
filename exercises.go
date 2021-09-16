@@ -36,9 +36,7 @@ func getExercises() exercises {
 				region = string(e)
 				continue
 			}
-			ex := exercise{name: string(e), region: region}
-			ex.description = ex.getDescription()
-			es = append(es, ex)
+			es = append(es, exercise{name: string(e), region: region})
 		}
 	}
 	return es
@@ -47,7 +45,9 @@ func getExercises() exercises {
 func (es exercises) chooseRandomExercise() exercise {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
-	return es[r.Intn(len(es)-1)]
+	e := es[r.Intn(len(es)-1)]
+	e.description = e.getDescription()
+	return e
 }
 
 func (es exercises) chooseRandomExerciseForRegion(r string) (exercise, error) {
@@ -116,7 +116,6 @@ func (e exercise) getDescription() string {
 }
 
 func (e exercise) getDescriptionFromFile() string {
-	fmt.Println("Reading description from file for", e.name)
 	contents, err := os.ReadFile("descriptions/" + e.name)
 	if err != nil {
 		fmt.Println("Error", err)
