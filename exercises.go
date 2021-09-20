@@ -3,19 +3,26 @@ package main
 import (
 	"errors"
 	"fmt"
+	"image/color"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
+
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/canvas"
+	"fyne.io/fyne/v2/widget"
 )
 
 type exercise struct {
 	name        string
 	region      string
 	description string
+	reps        int
 }
 
 type exercises []exercise
@@ -47,6 +54,7 @@ func (es exercises) chooseRandomExercise() exercise {
 	r := rand.New(source)
 	e := es[r.Intn(len(es)-1)]
 	e.description = e.getDescription()
+	e.reps = getRandomReps()
 	return e
 }
 
@@ -92,19 +100,26 @@ func (es exercises) getRandomFullBodyWorkout() exercises {
 	return fullBodyWorkout
 }
 
-func (rs regions) printRegions() {
-	for _, r := range rs {
-		fmt.Println(r)
-	}
-}
-
-func (e exercise) printExercise(r int) {
+func (e exercise) printExercise() {
 	fmt.Println("--------------------")
 	fmt.Println("Region:", e.region)
 	fmt.Println("Name:", e.name)
-	fmt.Println("Reps:", r)
+	fmt.Println("Reps:", e.reps)
 	fmt.Println(e.description)
 	fmt.Println("--------------------")
+}
+
+func (e exercise) display() (*canvas.Text, *canvas.Text, *canvas.Text, *widget.Label) {
+	e.printExercise()
+	name := canvas.NewText(e.name, color.White)
+	name.Alignment = fyne.TextAlignCenter
+	name.TextSize = 24
+	reps := canvas.NewText("Reps: "+strconv.Itoa(e.reps), color.White)
+	reps.Alignment = fyne.TextAlignCenter
+	reps.TextSize = 18
+	region := canvas.NewText("Region: "+e.region, color.White)
+	description := widget.NewLabel(e.description)
+	return name, reps, region, description
 }
 
 func (e exercise) getDescription() string {
@@ -171,4 +186,10 @@ func (e exercise) getDescriptionFromWebsite() string {
 	}
 	os.WriteFile("descriptions/"+e.name, []byte(d), 0666)
 	return d
+}
+
+func getRandomReps() int {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+	return r.Intn(50)
 }
