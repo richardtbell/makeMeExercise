@@ -15,6 +15,7 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
+	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -109,7 +110,7 @@ func (e exercise) printExercise() {
 	fmt.Println("--------------------")
 }
 
-func (e exercise) display() (*canvas.Text, *canvas.Text, *canvas.Text, *widget.Label) {
+func (e exercise) display() *fyne.Container {
 	e.printExercise()
 	name := canvas.NewText(e.name, color.White)
 	name.Alignment = fyne.TextAlignCenter
@@ -119,7 +120,7 @@ func (e exercise) display() (*canvas.Text, *canvas.Text, *canvas.Text, *widget.L
 	reps.TextSize = 18
 	region := canvas.NewText("Region: "+e.region, color.White)
 	description := widget.NewLabel(e.description)
-	return name, reps, region, description
+	return container.NewVBox(name, reps, region, description)
 }
 
 func (e exercise) getDescription() string {
@@ -191,5 +192,5 @@ func (e exercise) getDescriptionFromWebsite() string {
 func getRandomReps() int {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
-	return r.Intn(50)
+	return r.Intn(49) + 1
 }
