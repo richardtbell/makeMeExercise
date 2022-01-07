@@ -9,7 +9,7 @@ import (
 
 func Get() Exercises {
 	es := Exercises{}
-	contents, err := os.ReadFile("exerciseList.txt")
+	contents, err := os.ReadFile("store/exerciseList.txt")
 	if err != nil {
 		fmt.Println("Error", err)
 		os.Exit(1)

@@ -27,13 +27,12 @@ func checkFile(filename string) error {
 }
 
 func (e Exercise) Save() {
-	filename := "completed.json"
-	err := checkFile(filename)
+	err := checkFile(HISTORY_FILENAME)
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	file, err := ioutil.ReadFile(filename)
+	file, err := ioutil.ReadFile(HISTORY_FILENAME)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -56,7 +55,7 @@ func (e Exercise) Save() {
 		fmt.Println(err)
 	}
 
-	err = ioutil.WriteFile(filename, dataBytes, 0644)
+	err = ioutil.WriteFile(HISTORY_FILENAME, dataBytes, 0644)
 	if err != nil {
 		fmt.Println(err)
 	}
