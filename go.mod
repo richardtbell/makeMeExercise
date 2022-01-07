@@ -1,4 +1,4 @@
-module main
+module makeMeExercise
 
 go 1.17
 

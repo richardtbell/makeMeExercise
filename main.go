@@ -1,6 +1,9 @@
 package main
 
 import (
+	"makeMeExercise/exercise"
+	"makeMeExercise/exercises"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
@@ -11,9 +14,9 @@ import (
 func main() {
 	a := app.New()
 	win := a.NewWindow("Make me fit")
-	es := getExercises()
-	e := es.chooseRandomExercise()
-	workout := es.getRandomFullBodyWorkout()
+	es := exercises.Get()
+	e := es.ChooseRandomExercise()
+	workout := es.GetRandomFullBodyWorkout()
 
 	tabs := container.NewAppTabs(
 		container.NewTabItem("Random Exercise", exerciseCard(e)),
@@ -24,7 +27,7 @@ func main() {
 	win.ShowAndRun()
 }
 
-func displayFullBodyWorkout(w Exercises) *widget.Accordion {
+func displayFullBodyWorkout(w exercises.Exercises) *widget.Accordion {
 	displayedWorkout := widget.NewAccordion()
 	for _, e := range w {
 		displayedWorkout.Append(widget.NewAccordionItem(e.Region, exerciseCardForRegion(e)))
@@ -32,27 +35,27 @@ func displayFullBodyWorkout(w Exercises) *widget.Accordion {
 	return displayedWorkout
 }
 
-func displayNewExercise(e Exercise, displayedExercise *widget.Card) {
-	newExercise, _ := getExercises().chooseRandomExerciseForRegion(e.Region)
-	displayedExercise.SetContent(newExercise.display())
+func displayNewExercise(e exercise.Exercise, displayedExercise *widget.Card) {
+	newExercise, _ := exercises.Get().ChooseRandomExerciseForRegion(e.Region)
+	displayedExercise.SetContent(newExercise.Display())
 }
-func exerciseCardForRegion(e Exercise) *fyne.Container {
-	displayedExercise := widget.NewCard("", "", e.display())
+func exerciseCardForRegion(e exercise.Exercise) *fyne.Container {
+	displayedExercise := widget.NewCard("", "", e.Display())
 	newExerciseButton := widget.NewButton("New "+e.Region+" exercise", func() {
 		displayNewExercise(e, displayedExercise)
 	})
 	saveExerciseButton := widget.NewButton("Completed", func() {
 		displayNewExercise(e, displayedExercise)
-		e.save()
+		e.Save()
 	})
 	return container.NewVBox(displayedExercise, centerButton(newExerciseButton), centerButton(saveExerciseButton))
 }
 
-func exerciseCard(e Exercise) *fyne.Container {
-	displayedExercise := widget.NewCard("", "", e.display())
+func exerciseCard(e exercise.Exercise) *fyne.Container {
+	displayedExercise := widget.NewCard("", "", e.Display())
 	newExerciseButton := widget.NewButton("New random exercise", func() {
-		newExercise := getExercises().chooseRandomExercise()
-		displayedExercise.SetContent(newExercise.display())
+		newExercise := exercises.Get().ChooseRandomExercise()
+		displayedExercise.SetContent(newExercise.Display())
 	})
 	return container.NewVBox(displayedExercise, centerButton(newExerciseButton))
 }
