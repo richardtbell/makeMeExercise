@@ -24,23 +24,31 @@ func main() {
 	win.ShowAndRun()
 }
 
-func displayFullBodyWorkout(w exercises) *widget.Accordion {
+func displayFullBodyWorkout(w Exercises) *widget.Accordion {
 	displayedWorkout := widget.NewAccordion()
 	for _, e := range w {
-		displayedWorkout.Append(widget.NewAccordionItem(e.region, exerciseCardForRegion(e)))
+		displayedWorkout.Append(widget.NewAccordionItem(e.Region, exerciseCardForRegion(e)))
 	}
 	return displayedWorkout
 }
-func exerciseCardForRegion(e exercise) *fyne.Container {
+
+func displayNewExercise(e Exercise, displayedExercise *widget.Card) {
+	newExercise, _ := getExercises().chooseRandomExerciseForRegion(e.Region)
+	displayedExercise.SetContent(newExercise.display())
+}
+func exerciseCardForRegion(e Exercise) *fyne.Container {
 	displayedExercise := widget.NewCard("", "", e.display())
-	newExerciseButton := widget.NewButton("New "+e.region+" exercise", func() {
-		newExercise, _ := getExercises().chooseRandomExerciseForRegion(e.region)
-		displayedExercise.SetContent(newExercise.display())
+	newExerciseButton := widget.NewButton("New "+e.Region+" exercise", func() {
+		displayNewExercise(e, displayedExercise)
 	})
-	return container.NewVBox(displayedExercise, centerButton(newExerciseButton))
+	saveExerciseButton := widget.NewButton("Completed", func() {
+		displayNewExercise(e, displayedExercise)
+		e.save()
+	})
+	return container.NewVBox(displayedExercise, centerButton(newExerciseButton), centerButton(saveExerciseButton))
 }
 
-func exerciseCard(e exercise) *fyne.Container {
+func exerciseCard(e Exercise) *fyne.Container {
 	displayedExercise := widget.NewCard("", "", e.display())
 	newExerciseButton := widget.NewButton("New random exercise", func() {
 		newExercise := getExercises().chooseRandomExercise()

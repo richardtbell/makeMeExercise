@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"image/color"
@@ -19,18 +20,24 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-type exercise struct {
-	name        string
-	region      string
-	description string
-	reps        int
+type Exercise struct {
+	Name        string
+	Region      string
+	Description string
+	Reps        int
 }
 
-type exercises []exercise
-type regions []string
+type Exercises []Exercise
+type Regions []string
+type completedExercise struct {
+	Exercise   Exercise
+	Weight     float64
+	Difficulty string
+	Date       string
+}
 
-func getExercises() exercises {
-	es := exercises{}
+func getExercises() Exercises {
+	es := Exercises{}
 	contents, err := os.ReadFile("exerciseList.txt")
 	if err != nil {
 		fmt.Println("Error", err)
@@ -44,53 +51,53 @@ func getExercises() exercises {
 				region = string(e)
 				continue
 			}
-			es = append(es, exercise{name: string(e), region: region})
+			es = append(es, Exercise{Name: string(e), Region: region})
 		}
 	}
 	return es
 }
 
-func (es exercises) chooseRandomExercise() exercise {
+func (es Exercises) chooseRandomExercise() Exercise {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 	e := es[r.Intn(len(es)-1)]
-	e.description = e.getDescription()
-	e.reps = getRandomReps()
+	e.Description = e.getDescription()
+	e.Reps = getRandomReps()
 	return e
 }
 
-func (es exercises) chooseRandomExerciseForRegion(r string) (exercise, error) {
-	exercisesForRegion := exercises{}
+func (es Exercises) chooseRandomExerciseForRegion(r string) (Exercise, error) {
+	exercisesForRegion := Exercises{}
 	for _, e := range es {
-		if e.region == r {
+		if e.Region == r {
 			exercisesForRegion = append(exercisesForRegion, e)
 		}
 	}
 	if len(exercisesForRegion) == 0 {
-		return exercise{}, errors.New("No exercises found for region '" + r + "'")
+		return Exercise{}, errors.New("No Exercises found for region '" + r + "'")
 	}
 	return exercisesForRegion.chooseRandomExercise(), nil
 }
 
-func (es exercises) getAllPossibleRegions() regions {
-	regions := regions{}
+func (es Exercises) getAllPossibleRegions() Regions {
+	regions := Regions{}
 	for _, e := range es {
 		hasRegion := false
 		for _, r := range regions {
-			if e.region == r {
+			if e.Region == r {
 				hasRegion = true
 			}
 		}
 		if !hasRegion {
-			regions = append(regions, e.region)
+			regions = append(regions, e.Region)
 		}
 	}
 	return regions
 }
 
-func (es exercises) getRandomFullBodyWorkout() exercises {
+func (es Exercises) getRandomFullBodyWorkout() Exercises {
 	rs := es.getAllPossibleRegions()
-	fullBodyWorkout := exercises{}
+	fullBodyWorkout := Exercises{}
 	for _, r := range rs {
 		e, err := es.chooseRandomExerciseForRegion(r)
 		if err != nil {
@@ -101,29 +108,76 @@ func (es exercises) getRandomFullBodyWorkout() exercises {
 	return fullBodyWorkout
 }
 
-func (e exercise) printExercise() {
+func (e Exercise) printExercise() {
 	fmt.Println("--------------------")
-	fmt.Println("Region:", e.region)
-	fmt.Println("Name:", e.name)
-	fmt.Println("Reps:", e.reps)
-	fmt.Println(e.description)
+	fmt.Println("Region:", e.Region)
+	fmt.Println("Name:", e.Name)
+	fmt.Println("Reps:", e.Reps)
+	fmt.Println(e.Description)
 	fmt.Println("--------------------")
 }
 
-func (e exercise) display() *fyne.Container {
+func checkFile(filename string) error {
+	_, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		_, err := os.Create(filename)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (e Exercise) save() {
+	filename := "completed.json"
+	err := checkFile(filename)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	file, err := ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	data := []completedExercise{}
+
+	// Here the magic happens!
+	json.Unmarshal(file, &data)
+	currentTime := time.Time.Format(time.Now(), "2006-01-02 15:04")
+	toSave := &completedExercise{
+		Exercise: e,
+		Date:     currentTime,
+	}
+
+	data = append(data, *toSave)
+
+	// Preparing the data to be marshalled and written.
+	dataBytes, err := json.Marshal(data)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	err = ioutil.WriteFile(filename, dataBytes, 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
+func (e Exercise) display() *fyne.Container {
 	e.printExercise()
-	name := canvas.NewText(e.name, color.White)
+	name := canvas.NewText(e.Name, color.White)
 	name.Alignment = fyne.TextAlignCenter
 	name.TextSize = 24
-	reps := canvas.NewText("Reps: "+strconv.Itoa(e.reps), color.White)
+	reps := canvas.NewText("Reps: "+strconv.Itoa(e.Reps), color.White)
 	reps.Alignment = fyne.TextAlignCenter
 	reps.TextSize = 18
-	region := canvas.NewText("Region: "+e.region, color.White)
-	description := widget.NewLabel(e.description)
+	region := canvas.NewText("Region: "+e.Region, color.White)
+	description := widget.NewLabel(e.Description)
 	return container.NewVBox(name, reps, region, description)
 }
 
-func (e exercise) getDescription() string {
+func (e Exercise) getDescription() string {
 	d := e.getDescriptionFromFile()
 	if len(d) == 0 {
 		d = e.getDescriptionFromWebsite()
@@ -131,21 +185,21 @@ func (e exercise) getDescription() string {
 	return d
 }
 
-func (e exercise) getDescriptionFromFile() string {
-	contents, err := os.ReadFile("descriptions/" + e.name)
+func (e Exercise) getDescriptionFromFile() string {
+	contents, err := os.ReadFile("descriptions/" + e.Name)
 	if err != nil {
 		fmt.Println("Error", err)
 	}
 	return string(contents)
 }
 
-func (e exercise) getDescriptionFromWebsite() string {
+func (e Exercise) getDescriptionFromWebsite() string {
 	baseUrl := "https://dumbbell-exercises.com/exercises/"
-	url := baseUrl + e.region
-	if e.region == "Back" {
+	url := baseUrl + e.Region
+	if e.Region == "Back" {
 		url = "https://dumbbell-exercises.com/exercises/dumbbell-back-exercises"
 	}
-	if e.region == "Bicep" {
+	if e.Region == "Bicep" {
 		url = "https://dumbbell-exercises.com/exercises/dumbbell-exercises-for-biceps"
 	}
 	resp, err := http.Get(url)
@@ -154,12 +208,12 @@ func (e exercise) getDescriptionFromWebsite() string {
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	sanitisedName := strings.ReplaceAll(e.name, "(", "\\(")
+	sanitisedName := strings.ReplaceAll(e.Name, "(", "\\(")
 	sanitisedName = strings.ReplaceAll(sanitisedName, ")", "\\)")
 	reg := regexp.MustCompile(`>` + sanitisedName + `<`)
 	nameIndex := reg.FindAllStringSubmatchIndex(string(body), -1)
 	if len(nameIndex) == 0 {
-		fmt.Println("Error: Could not find description for", e.name)
+		fmt.Println("Error: Could not find description for", e.Name)
 		return ""
 	}
 	var ni int
@@ -185,7 +239,7 @@ func (e exercise) getDescriptionFromWebsite() string {
 	if d[0] != '*' {
 		d = "* " + d
 	}
-	os.WriteFile("descriptions/"+e.name, []byte(d), 0666)
+	os.WriteFile("descriptions/"+e.Name, []byte(d), 0666)
 	return d
 }
 
