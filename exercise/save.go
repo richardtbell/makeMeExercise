@@ -10,7 +10,7 @@ import (
 
 type CompletedExercise struct {
 	Exercise   Exercise
-	Weight     float64
+	Weight     string
 	Difficulty string
 	Date       string
 }
@@ -26,7 +26,7 @@ func checkFile(filename string) error {
 	return nil
 }
 
-func (e Exercise) Save() {
+func (e Exercise) Save(weight string, difficulty string) {
 	err := checkFile(HISTORY_FILENAME)
 	if err != nil {
 		fmt.Println(err)
@@ -43,8 +43,10 @@ func (e Exercise) Save() {
 	json.Unmarshal(file, &data)
 	currentTime := time.Time.Format(time.Now(), "2006-01-02 15:04")
 	toSave := &CompletedExercise{
-		Exercise: e,
-		Date:     currentTime,
+		Exercise:   e,
+		Date:       currentTime,
+		Weight:     weight,
+		Difficulty: difficulty,
 	}
 
 	data = append(data, *toSave)
