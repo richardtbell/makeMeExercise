@@ -4,9 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"strconv"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -40,7 +42,7 @@ func (e Exercise) DisplayPreviousAttempts() *fyne.Container {
 	data := []string{}
 	for _, attempt := range attempts {
 		fmt.Println(attempt)
-		data = append(data, "Weight: "+attempt.Weight+" "+attempt.Difficulty)
+		data = append(data, "Reps: "+strconv.Itoa(attempt.Exercise.Reps)+" Weight: "+attempt.Weight+" "+attempt.Difficulty)
 	}
 	list := widget.NewList(
 		func() int {
@@ -52,5 +54,5 @@ func (e Exercise) DisplayPreviousAttempts() *fyne.Container {
 		func(i widget.ListItemID, o fyne.CanvasObject) {
 			o.(*widget.Label).SetText(data[i])
 		})
-	return container.NewHBox(list)
+	return container.New(layout.NewGridLayout(3), list)
 }

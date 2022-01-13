@@ -6,8 +6,8 @@
             "Description": "* Lie down with your back on the bench, hands gripping the sides of it and hold a dumbbell between your feet.\n* Raise your legs up until they are perpendicular to the floor and lower them back after a short pause.\n* Try to keep your legs extended by keeping your knees at the same angle.",
             "Reps": 44
         },
-        "Weight": 0,
-        "Difficulty": "",
+        "Weight": "0",
+        "Difficulty": "Hard",
         "Date": "2022-01-11 17:12"
     },
     {
@@ -17,7 +17,7 @@
             "Description": "* Lie down on your back on the bench and grab one dumbbell with each hand at body height, elbows just slightly arched.\n* Raise the dumbbells until they are side by side on top of you and slowly lower them back after a short pause.\n* Try to maintain the same angle in your elbows throughout.",
             "Reps": 28
         },
-        "Weight": 7.5,
+        "Weight": "7.5",
         "Difficulty": "Easy",
         "Date": "2022-01-11 17:14"
     },
@@ -28,7 +28,7 @@
             "Description": "* Stand up and hold one dumbbell with each hand in front of your thighs, palms facing your body.\n* Raise the dumbbells straight up by raising your shoulders and lower them back after a short pause.\n* Keep your arms extended throughout.",
             "Reps": 12
         },
-        "Weight": 20,
+        "Weight": "20",
         "Difficulty": "Hard",
         "Date": "2022-01-11 17:16"
     },
@@ -39,7 +39,7 @@
             "Description": "* Stand up and hold one dumbbell with each hand down the side of your body, palms facing each other.\n* Raise one dumbbell until it reaches your shoulder's height and while slowly lowering it back down after a short pause, start raising the other one.\n* Try NOT to jerk your upper body in an effort to help you lift the weights.",
             "Reps": 5
         },
-        "Weight": 15,
+        "Weight": "15",
         "Difficulty": "Hard",
         "Date": "2022-01-11 17:19"
     },
@@ -50,7 +50,7 @@
             "Description": "* Lie down on your back on a bench and hold a dumbbell in each hand, palms facing up, upper arms pointing the ceiling.\n* Raise the dumbbells by extending your elbows and allow them to slowly return after a short pause.\n* Keep your upper arms still throughout.",
             "Reps": 27
         },
-        "Weight": 5,
+        "Weight": "5",
         "Difficulty": "Medium",
         "Date": "2022-01-11 17:21"
     },
@@ -61,7 +61,7 @@
             "Description": "* Stand up, reach down and grab a dumbbell just above one of your feet with your opposite hand (knees slightly bent).\n* Lift the dumbbell up until you are standing up and lower it back after a short pause.\n* Keep a slight arch in your knees throughout.",
             "Reps": 27
         },
-        "Weight": 5,
+        "Weight": "5",
         "Difficulty": "Medium",
         "Date": "2022-01-11 17:25"
     },
@@ -72,7 +72,7 @@
             "Description": "* Stand up and hold one dumbbell in each hand against the sides of your body, palms facing each other.\n* Lift your heels from the ground by pushing on your toes and lower yourself back down after a short pause.\n* Keep the rest of your body still throughout.",
             "Reps": 17
         },
-        "Weight": 5,
+        "Weight": "5",
         "Difficulty": "Easy",
         "Date": "2022-01-11 17:27"
     },
@@ -83,8 +83,96 @@
             "Description": "* Sit on one end of a bench and hold one dumbbell with one hand, wrist against your knee, palm facing up.\n* Raise one dumbbell up by raising only your hand and slowly lower it back down after a short pause. Alternate hands after a set.\n* Keep your arms still throughout.",
             "Reps": 38
         },
-        "Weight": 1.5,
+        "Weight": "1.5",
         "Difficulty": "Easy",
         "Date": "2022-01-11 17:30"
+    },
+    {
+        "Exercise": {
+            "Name": "Weighted Crunch",
+            "Region": "Abdominals",
+            "Description": "* Lie down on your back on a bench and hold a dumbbell on top of your chest.\n* Raise your upper body until your shoulder blades no longer touch the bench and lower yourself back down after a short pause.\n* To avoid pulling your neck with your hands, look straight up instead of looking at your knees.",
+            "Reps": 20
+        },
+        "Weight": "10",
+        "Difficulty": "Easy",
+        "Date": "2022-01-13 17:05"
+    },
+    {
+        "Exercise": {
+            "Name": "Straight-Arm Pullover",
+            "Region": "Chest",
+            "Description": "* Lie down on your back on one end of the bench and hold one dumbbell with both hands above your chest area, arms extended.\n* Raise the dumbbell straight up until your arms are perpendicular to the floor and lower it back after a short pause.\n* Keep your arms extended throughout by keeping still the angle of your elbows.",
+            "Reps": 13
+        },
+        "Weight": "12.5",
+        "Difficulty": "Medium",
+        "Date": "2022-01-13 17:07"
+    },
+    {
+        "Exercise": {
+            "Name": "Palms-In Alternated Shoulder Press",
+            "Region": "Shoulders",
+            "Description": "* Stand up and hold two dumbbells, one at shoulder level and the other high with your arm extended, palms facing each other.\n* Push one dumbbell straight up until your elbow comes close to locking and lower it back down after a short pause. Alternate hands.\n* Be careful NOT to jerk your back in an effort to help you raise the dumbbells.",
+            "Reps": 35
+        },
+        "Weight": "7.5",
+        "Difficulty": "Easy",
+        "Date": "2022-01-13 17:09"
+    },
+    {
+        "Exercise": {
+            "Name": "Hammer Curl",
+            "Region": "Bicep",
+            "Description": "* Grab one dumbbell in each hand along the sides of your body, palms facing your body.\n* Raise both dumbbells by curling your elbows and lower them down after a short pause.\n* Keep your upper arms still throughout.",
+            "Reps": 13
+        },
+        "Weight": "10",
+        "Difficulty": "Medium",
+        "Date": "2022-01-13 17:10"
+    },
+    {
+        "Exercise": {
+            "Name": "Two-Arms Triceps Extension",
+            "Region": "Triceps",
+            "Description": "* Stand up and hold one dumbbell with both hands behind your head, upper arms pointing straight up.\n* Raise the dumbbell up by curling your elbows and slowly lower it back after a short pause.\n* Your upper arms should remain still throughout.",
+            "Reps": 36
+        },
+        "Weight": "10",
+        "Difficulty": "Medium",
+        "Date": "2022-01-13 17:13"
+    },
+    {
+        "Exercise": {
+            "Name": "Stiff Legged Dead Lift",
+            "Region": "Legs",
+            "Description": "* Stand up and reach down in order to hold two dumbbells with both hands (knees slightly bent).\n* Raise your upper body until you are standing and lower it back after a short pause.\n* Try to keep your arms straight throughout by keeping the same small arch in your elbows.",
+            "Reps": 4
+        },
+        "Weight": "20",
+        "Difficulty": "Easy",
+        "Date": "2022-01-13 17:14"
+    },
+    {
+        "Exercise": {
+            "Name": "Palms-Down Wrist Curl",
+            "Region": "Forearms",
+            "Description": "* Sit on one end of a bench and hold one dumbbell on each hand, wrists against your knees, palms facing down.\n* Raise the dumbbells up by raising only your hands and slowly lower them back down after a short pause.\n* Keep your arms still throughout.",
+            "Reps": 7
+        },
+        "Weight": "7.5",
+        "Difficulty": "Hard",
+        "Date": "2022-01-13 17:17"
+    },
+    {
+        "Exercise": {
+            "Name": "Kneeling One Arm Row",
+            "Region": "Back",
+            "Description": "* Put your knee and hand on a bench and grab a dumbbell with your other hand.\n* Lift the dumbbell straight up without moving anything else than your arm and lower it back down after a short pause.\n* Breathe out when raising the dumbbell and in when returning to starting position.",
+            "Reps": 33
+        },
+        "Weight": "12.5",
+        "Difficulty": "Hard",
+        "Date": "2022-01-13 17:20"
     }
 ]
