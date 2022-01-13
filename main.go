@@ -57,7 +57,8 @@ func exerciseCardForRegion(e exercise.Exercise) *fyne.Container {
 		displayNewExercise(&e, displayedExercise)
 		e.Save(weightInput.Text, difficultyInput.Selected)
 	})
-	return container.NewVBox(displayedExercise, centerButton(newExerciseButton), saveRow(saveExerciseButton, weightInput, difficultyInput))
+	prev := e.DisplayPreviousAttempts()
+	return container.NewVBox(displayedExercise, prev, centerButton(newExerciseButton), saveRow(saveExerciseButton, weightInput, difficultyInput))
 }
 
 // func exerciseCard(e exercise.Exercise) *fyne.Container {

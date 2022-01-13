@@ -6,7 +6,7 @@
             "Description": "* Lie down with your back on the bench, hands gripping the sides of it and hold a dumbbell between your feet.\n* Raise your legs up until they are perpendicular to the floor and lower them back after a short pause.\n* Try to keep your legs extended by keeping your knees at the same angle.",
             "Reps": 44
         },
-        "Weight": "",
+        "Weight": 0,
         "Difficulty": "",
         "Date": "2022-01-11 17:12"
     },
@@ -17,7 +17,7 @@
             "Description": "* Lie down on your back on the bench and grab one dumbbell with each hand at body height, elbows just slightly arched.\n* Raise the dumbbells until they are side by side on top of you and slowly lower them back after a short pause.\n* Try to maintain the same angle in your elbows throughout.",
             "Reps": 28
         },
-        "Weight": "",
+        "Weight": 7.5,
         "Difficulty": "Easy",
         "Date": "2022-01-11 17:14"
     },
@@ -28,7 +28,7 @@
             "Description": "* Stand up and hold one dumbbell with each hand in front of your thighs, palms facing your body.\n* Raise the dumbbells straight up by raising your shoulders and lower them back after a short pause.\n* Keep your arms extended throughout.",
             "Reps": 12
         },
-        "Weight": "",
+        "Weight": 20,
         "Difficulty": "Hard",
         "Date": "2022-01-11 17:16"
     },
@@ -39,7 +39,7 @@
             "Description": "* Stand up and hold one dumbbell with each hand down the side of your body, palms facing each other.\n* Raise one dumbbell until it reaches your shoulder's height and while slowly lowering it back down after a short pause, start raising the other one.\n* Try NOT to jerk your upper body in an effort to help you lift the weights.",
             "Reps": 5
         },
-        "Weight": "",
+        "Weight": 15,
         "Difficulty": "Hard",
         "Date": "2022-01-11 17:19"
     },
@@ -50,7 +50,7 @@
             "Description": "* Lie down on your back on a bench and hold a dumbbell in each hand, palms facing up, upper arms pointing the ceiling.\n* Raise the dumbbells by extending your elbows and allow them to slowly return after a short pause.\n* Keep your upper arms still throughout.",
             "Reps": 27
         },
-        "Weight": "",
+        "Weight": 5,
         "Difficulty": "Medium",
         "Date": "2022-01-11 17:21"
     },
@@ -61,7 +61,7 @@
             "Description": "* Stand up, reach down and grab a dumbbell just above one of your feet with your opposite hand (knees slightly bent).\n* Lift the dumbbell up until you are standing up and lower it back after a short pause.\n* Keep a slight arch in your knees throughout.",
             "Reps": 27
         },
-        "Weight": "",
+        "Weight": 5,
         "Difficulty": "Medium",
         "Date": "2022-01-11 17:25"
     },
@@ -72,7 +72,7 @@
             "Description": "* Stand up and hold one dumbbell in each hand against the sides of your body, palms facing each other.\n* Lift your heels from the ground by pushing on your toes and lower yourself back down after a short pause.\n* Keep the rest of your body still throughout.",
             "Reps": 17
         },
-        "Weight": "",
+        "Weight": 5,
         "Difficulty": "Easy",
         "Date": "2022-01-11 17:27"
     },
@@ -83,74 +83,8 @@
             "Description": "* Sit on one end of a bench and hold one dumbbell with one hand, wrist against your knee, palm facing up.\n* Raise one dumbbell up by raising only your hand and slowly lower it back down after a short pause. Alternate hands after a set.\n* Keep your arms still throughout.",
             "Reps": 38
         },
-        "Weight": "",
+        "Weight": 1.5,
         "Difficulty": "Easy",
         "Date": "2022-01-11 17:30"
-    },
-    {
-        "Exercise": {
-            "Name": "Decline Bench Press",
-            "Region": "Chest",
-            "Description": "* Lie down on your back on a decline bench and hold 2 dumbbells at chest level, palms facing forward.\n* Raise the dumbbells straight up until your elbows are close to being locked and lower them back slowly after a short pause.\n* Breathe out when raising the dumbbells and breathe in when lowering them back",
-            "Reps": 25
-        },
-        "Weight": "500",
-        "Difficulty": "",
-        "Date": "2022-01-11 17:36"
-    },
-    {
-        "Exercise": {
-            "Name": "Incline Bench Press (Neutral Grip)",
-            "Region": "Chest",
-            "Description": "* Lie down on your back on an inclined bench and hold 2 dumbbells at chest level along your body, palms facing each other.\n* Raise the dumbbells straight up until your elbows are close to being locked and lower them back slowly after a short pause.\n* Breathe out when raising the dumbbells and breathe in when lowering them back.",
-            "Reps": 44
-        },
-        "Weight": "789",
-        "Difficulty": "easy",
-        "Date": "2022-01-11 17:37"
-    },
-    {
-        "Exercise": {
-            "Name": "Seated Triceps Extension",
-            "Region": "Triceps",
-            "Description": "* Sit down and hold one dumbbell with both hands behind your head, elbows at 90 degree angles, upper arms straight up.\n* Raise the dumbbell with both hands until your arms are close to being fully extended and slowly lower it back after a short pause.\n* Keep your upper arms still throughout.",
-            "Reps": 20
-        },
-        "Weight": "456",
-        "Difficulty": "Medium",
-        "Date": "2022-01-11 17:41"
-    },
-    {
-        "Exercise": {
-            "Name": "Lying Triceps Extension",
-            "Region": "Triceps",
-            "Description": "* Lie down on your back on a bench and hold a dumbbell in each hand, palms facing up, upper arms pointing the ceiling.\n* Raise the dumbbells by extending your elbows and allow them to slowly return after a short pause.\n* Keep your upper arms still throughout.",
-            "Reps": 22
-        },
-        "Weight": "34.43",
-        "Difficulty": "Medium",
-        "Date": "2022-01-11 17:47"
-    },
-    {
-        "Exercise": {
-            "Name": "Dead Lift",
-            "Region": "Back",
-            "Description": "* Stand up and grab a dumbbell with each of your hands.\n* Flex your knees and hips in order to lower the dumbbells straight down and raise yourself back up after a short pause.\n* Breathe in when lowering and breathe out when returning to starting position.",
-            "Reps": 38
-        },
-        "Weight": "234",
-        "Difficulty": "Hard",
-        "Date": "2022-01-11 17:59"
-    },
-    {
-        "Exercise": {
-            "Name": "Dead Lift",
-            "Region": "Back",
-            "Description": "* Stand up and grab a dumbbell with each of your hands.\n* Flex your knees and hips in order to lower the dumbbells straight down and raise yourself back up after a short pause.\n* Breathe in when lowering and breathe out when returning to starting position.",
-            "Reps": 38
-        },
-        "Weight": "234",
-        "Difficulty": "Hard",
-        "Date": "2022-01-11 17:59"
     }
 ]

@@ -4,6 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/widget"
 )
 
 type History []CompletedExercise
@@ -29,4 +33,24 @@ func (e Exercise) GetPreviousAttempts() (attempts History) {
 		}
 	}
 	return
+}
+
+func (e Exercise) DisplayPreviousAttempts() *fyne.Container {
+	attempts := e.GetPreviousAttempts()
+	data := []string{}
+	for _, attempt := range attempts {
+		fmt.Println(attempt)
+		data = append(data, "Weight: "+attempt.Weight+" "+attempt.Difficulty)
+	}
+	list := widget.NewList(
+		func() int {
+			return len(data)
+		},
+		func() fyne.CanvasObject {
+			return widget.NewLabel("Previous Attempts")
+		},
+		func(i widget.ListItemID, o fyne.CanvasObject) {
+			o.(*widget.Label).SetText(data[i])
+		})
+	return container.NewHBox(list)
 }
