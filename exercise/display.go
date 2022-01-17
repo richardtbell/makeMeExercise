@@ -11,11 +11,6 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-// func displayNewExercise(e *Exercise, card *widget.Card) {
-// 	newExercise, _ := exercises.Get().ChooseRandomExerciseForRegion(e.Region)
-// 	card.SetContent(newExercise.Display(card))
-// 	e = &newExercise
-// }
 type getNewExercise func(Exercise) Exercise
 
 func (e Exercise) Display(card *widget.Card, getNewExercise getNewExercise) {
@@ -53,7 +48,4 @@ func centerButton(button *widget.Button) *fyne.Container {
 
 func saveRow(button *widget.Button, weightInput *widget.Entry, difficultyInput *widget.RadioGroup) *fyne.Container {
 	return container.New(layout.NewGridLayout(3), weightInput, difficultyInput, button)
-	// weight := container.NewVBox(layout.NewSpacer(), weightInput, layout.NewSpacer())
-	// b := container.NewVBox(layout.NewSpacer(), button, layout.NewSpacer())
-	// return container.NewHBox(layout.NewSpacer(), weight, difficultyInput, b, layout.NewSpacer())
 }
