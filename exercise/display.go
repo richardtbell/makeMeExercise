@@ -13,7 +13,21 @@ import (
 
 type getNewExercise func(Exercise) Exercise
 
-func (e Exercise) Display(card *widget.Card, getNewExercise getNewExercise) {
+func closeItemAndOpenNext(a *widget.Accordion) {
+	for i, item := range a.Items {
+		if item.Open {
+			a.Close(i)
+			if i == len(a.Items)-1 {
+				a.Open(0)
+			} else {
+				a.Open(i + 1)
+			}
+			break
+		}
+	}
+}
+
+func (e Exercise) Display(card *widget.Card, getNewExercise getNewExercise, a *widget.Accordion) {
 	e.PrintExercise()
 	name := canvas.NewText(e.Name, color.White)
 	name.Alignment = fyne.TextAlignCenter
@@ -27,7 +41,7 @@ func (e Exercise) Display(card *widget.Card, getNewExercise getNewExercise) {
 
 	newExerciseButton := widget.NewButton("Change "+e.Region+" exercise", func() {
 		newExercise := getNewExercise(e)
-		newExercise.Display(card, getNewExercise)
+		newExercise.Display(card, getNewExercise, a)
 	})
 	weightInput := widget.NewEntry()
 	weightInput.SetPlaceHolder("Enter weight")
@@ -36,10 +50,11 @@ func (e Exercise) Display(card *widget.Card, getNewExercise getNewExercise) {
 	saveExerciseButton := widget.NewButton("Completed", func() {
 		e.Save(weightInput.Text, difficultyInput.Selected)
 		newExercise := getNewExercise(e)
-		newExercise.Display(card, getNewExercise)
+		newExercise.Display(card, getNewExercise, a)
+		closeItemAndOpenNext(a)
 	})
 
-	card.SetContent(container.NewVBox(name, reps, region, description, prev, centerButton(newExerciseButton), saveRow(saveExerciseButton, weightInput, difficultyInput)))
+	card.SetContent(container.NewHBox(container.NewVBox(name, reps, region, description, centerButton(newExerciseButton), saveRow(saveExerciseButton, weightInput, difficultyInput)), layout.NewSpacer(), prev))
 }
 
 func centerButton(button *widget.Button) *fyne.Container {

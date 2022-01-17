@@ -25,19 +25,19 @@ func main() {
 }
 
 func displayFullBodyWorkout(w exercises.Exercises) *widget.Accordion {
-	displayedWorkout := widget.NewAccordion()
+	a := widget.NewAccordion()
 	for _, e := range w {
-		displayedWorkout.Append(widget.NewAccordionItem(e.Region, exerciseCardForRegion(e)))
+		a.Append(widget.NewAccordionItem(e.Region, exerciseCardForRegion(e, a)))
 	}
-	return displayedWorkout
+	return a
 }
 
 func getNewExercise(e exercise.Exercise) exercise.Exercise {
 	newExercise, _ := exercises.Get().ChooseRandomExerciseForRegion(e.Region)
 	return newExercise
 }
-func exerciseCardForRegion(e exercise.Exercise) *fyne.Container {
+func exerciseCardForRegion(e exercise.Exercise, a *widget.Accordion) *fyne.Container {
 	card := widget.NewCard("", "", container.NewVBox())
-	e.Display(card, getNewExercise)
+	e.Display(card, getNewExercise, a)
 	return container.NewVBox(card)
 }
