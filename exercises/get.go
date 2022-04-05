@@ -3,8 +3,10 @@ package exercises
 import (
 	"fmt"
 	"makeMeExercise/exercise"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 func Get() Exercises {
@@ -30,6 +32,8 @@ func Get() Exercises {
 
 func (es Exercises) GetRandomFullBodyWorkout() Exercises {
 	rs := es.GetAllPossibleRegions()
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(rs), func(i, j int) { rs[i], rs[j] = rs[j], rs[i] })
 	fullBodyWorkout := Exercises{}
 	for _, r := range rs {
 		e, err := es.ChooseRandomExerciseForRegion(r)
